@@ -22,6 +22,11 @@
 
       <div id="start-error" class="error-msg" hidden></div>
 
+      <div class="field" id="set-field" hidden>
+        <label>เลือกชุดข้อสอบ <span class="hint">Choose your test set</span></label>
+        <div class="set-choices" id="set-choices"></div>
+      </div>
+
       <div class="row-2">
         <div class="field">
           <label for="first-name">ชื่อ <span class="hint">First name</span></label>
@@ -31,11 +36,6 @@
           <label for="last-name">นามสกุล <span class="hint">Last name</span></label>
           <input type="text" id="last-name" autocomplete="family-name" required>
         </div>
-      </div>
-
-      <div class="field" id="set-field" hidden>
-        <label for="set-select">เลือกชุดข้อสอบ <span class="hint">Test set</span></label>
-        <select id="set-select"></select>
       </div>
 
       <div class="notice">
