@@ -22,9 +22,26 @@
 
       <div id="start-error" class="error-msg" hidden></div>
 
-      <div class="field" id="set-field" hidden>
+      <div class="field" id="set-field">
         <label>เลือกชุดข้อสอบ <span class="hint">Choose your test set</span></label>
-        <div class="set-choices" id="set-choices"></div>
+        <div class="set-choices" id="set-choices">
+          <label class="set-choice">
+            <input type="radio" name="exam_set" value="Set 1" checked>
+            <span class="set-check"></span>
+            <span class="set-info">
+              <span class="set-name">ชุดที่ 1</span>
+              <span class="set-desc">50 ข้อ · ปรนัย 4 ตัวเลือก</span>
+            </span>
+          </label>
+          <label class="set-choice">
+            <input type="radio" name="exam_set" value="Set 2">
+            <span class="set-check"></span>
+            <span class="set-info">
+              <span class="set-name">ชุดที่ 2</span>
+              <span class="set-desc">50 ข้อ · ปรนัย 4 ตัวเลือก</span>
+            </span>
+          </label>
+        </div>
       </div>
 
       <div class="row-2">
@@ -54,8 +71,8 @@
     <p class="foot">ระบบสอบออนไลน์ · CEFR A1 → A2</p>
   </div>
 
-  <script src="assets/js/config.js"></script>
-  <script src="assets/js/api.js"></script>
-  <script src="assets/js/exam.js"></script>
+  <script src="assets/js/config.js?v=2"></script>
+  <script src="assets/js/api.js?v=2"></script>
+  <script src="assets/js/exam.js?v=2"></script>
 </body>
 </html>
