@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ทำข้อสอบ · CEFR A2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="exam">
+  <div class="wrap">
+    <div class="exam-bar">
+      <div class="exam-meta">
+        <span>ผู้สอบ: <strong id="exam-name">–</strong> · ชุด <strong id="exam-set">–</strong></span>
+        <span id="timer" class="timer" hidden></span>
+        <span id="progress-text">ตอบแล้ว 0 / 0 ข้อ</span>
+      </div>
+      <div class="track"><span id="progress-bar"></span></div>
+    </div>
+
+    <div id="exam-error" class="error-msg" hidden style="margin-top:16px"></div>
+
+    <div id="questions"></div>
+
+    <div class="submit-row">
+      <button class="btn" id="submit-btn">ส่งคำตอบ</button>
+    </div>
+
+    <p class="foot">ตรวจคำตอบให้ครบก่อนกดส่ง · เมื่อส่งแล้วจะไม่สามารถแก้ไขได้</p>
+  </div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/exam.js"></script>
+</body>
+</html>

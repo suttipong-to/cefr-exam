@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>แบบทดสอบภาษาอังกฤษ CEFR A2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="start">
+  <div class="wrap">
+    <header class="masthead">
+      <div class="brand">แบบทดสอบภาษาอังกฤษ <span>CEFR A2</span></div>
+      <div class="sub">English Proficiency Test · A1 → A2</div>
+    </header>
+
+    <div class="panel">
+      <h1>เริ่มทำแบบทดสอบ</h1>
+      <p class="lead">กรอกชื่อ–นามสกุลของคุณเพื่อเริ่มทำข้อสอบ แบบทดสอบมี 50 ข้อ ปรนัย 4 ตัวเลือก</p>
+
+      <div id="start-error" class="error-msg" hidden></div>
+
+      <div class="row-2">
+        <div class="field">
+          <label for="first-name">ชื่อ <span class="hint">First name</span></label>
+          <input type="text" id="first-name" autocomplete="given-name" required>
+        </div>
+        <div class="field">
+          <label for="last-name">นามสกุล <span class="hint">Last name</span></label>
+          <input type="text" id="last-name" autocomplete="family-name" required>
+        </div>
+      </div>
+
+      <div class="field" id="set-field" hidden>
+        <label for="set-select">เลือกชุดข้อสอบ <span class="hint">Test set</span></label>
+        <select id="set-select"></select>
+      </div>
+
+      <div class="notice">
+        ข้อมูลที่เก็บ: ชื่อ–นามสกุล และคำตอบของคุณ เพื่อบันทึกผลการสอบ เข้าถึงได้เฉพาะผู้ดูแลระบบเท่านั้น
+        <br>คุณจะไม่เห็นคะแนนของตนเองหลังส่งคำตอบ
+      </div>
+
+      <div class="field consent">
+        <input type="checkbox" id="consent">
+        <label for="consent" style="font-weight:400;margin:0">ฉันยินยอมให้เก็บชื่อ–นามสกุลและคำตอบเพื่อบันทึกผลการสอบ</label>
+      </div>
+
+      <button class="btn btn-block" id="start-btn">เริ่มทำข้อสอบ</button>
+    </div>
+
+    <p class="foot">ระบบสอบออนไลน์ · CEFR A1 → A2</p>
+  </div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/exam.js"></script>
+</body>
+</html>

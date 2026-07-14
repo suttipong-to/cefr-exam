@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>หน้าผู้ดูแลระบบ · CEFR A2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="admin">
+  <div class="wrap wrap-wide">
+    <header class="masthead">
+      <div class="brand">ผู้ดูแลระบบ · <span>CEFR A2</span></div>
+      <div class="sub">Admin · Results</div>
+    </header>
+
+    <!-- ประตูใส่รหัส -->
+    <div class="panel" id="gate" style="max-width:460px">
+      <h1>เข้าสู่ระบบผู้ดูแล</h1>
+      <p class="lead">กรอกรหัสผ่านเพื่อดูผลการสอบ</p>
+      <div id="login-error" class="error-msg" hidden></div>
+      <div class="field">
+        <label for="pass-input">รหัสผ่านแอดมิน</label>
+        <input type="password" id="pass-input" autocomplete="current-password">
+      </div>
+      <button class="btn btn-block" id="login-btn">เข้าสู่ระบบ</button>
+    </div>
+
+    <!-- แดชบอร์ด -->
+    <div id="dashboard" hidden>
+      <div class="stats">
+        <div class="stat"><div class="k">จำนวนผู้สอบ</div><div class="v" id="stat-count">0</div></div>
+        <div class="stat"><div class="k">คะแนนเฉลี่ย</div><div class="v" id="stat-avg">–</div></div>
+        <div class="stat"><div class="k">ผ่านเกณฑ์</div><div class="v" id="stat-pass">–</div></div>
+      </div>
+
+      <div class="toolbar">
+        <input type="text" id="filter-text" class="grow" placeholder="ค้นหาชื่อ–นามสกุล">
+        <select id="filter-set"></select>
+        <span class="spacer"></span>
+        <button class="btn btn-ghost" id="export-btn">ดาวน์โหลด CSV</button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>เวลา</th><th>ชื่อ–นามสกุล</th><th>ชุด</th>
+              <th class="num">คะแนน</th><th class="num">%</th><th>ผล</th>
+            </tr>
+          </thead>
+          <tbody id="results-body"></tbody>
+        </table>
+        <div class="empty" id="empty" hidden>ยังไม่มีผลการสอบ</div>
+      </div>
+    </div>
+
+    <p class="foot">ระบบสอบออนไลน์ · CEFR A1 → A2</p>
+  </div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
