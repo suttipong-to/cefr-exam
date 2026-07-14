@@ -8,14 +8,32 @@
   /* ---------- หน้าเริ่มต้น: กรอกชื่อ-นามสกุล ---------- */
   function initStart() {
     const setField = $('#set-field');
-    if (!cfg.RANDOM_SET) {
+    if (!cfg.RANDOM_SET && setField) {
       setField.hidden = false;
-      const sel = $('#set-select');
-      cfg.SETS.forEach(function (s) {
-        const opt = document.createElement('option');
-        opt.value = s.id; opt.textContent = s.id;
-        sel.appendChild(opt);
-      });
+      const choicesWrap = $('#set-choices');
+      const selectElem = $('#set-select');
+      if (choicesWrap) {
+        choicesWrap.innerHTML = '';
+        cfg.SETS.forEach(function (s, idx) {
+          const card = document.createElement('label');
+          card.className = 'set-choice';
+          card.innerHTML =
+            '<input type="radio" name="exam_set" value="' + escapeHtml(s.id) + '"' + (idx === 0 ? ' checked' : '') + '>' +
+            '<span class="set-check"></span>' +
+            '<span class="set-info">' +
+              '<span class="set-name">' + escapeHtml(s.label || s.id) + '</span>' +
+              '<span class="set-desc">' + escapeHtml(s.desc || '') + '</span>' +
+            '</span>';
+          choicesWrap.appendChild(card);
+        });
+      } else if (selectElem) {
+        selectElem.innerHTML = '';
+        cfg.SETS.forEach(function (s) {
+          const opt = document.createElement('option');
+          opt.value = s.id; opt.textContent = s.label || s.id;
+          selectElem.appendChild(opt);
+        });
+      }
     }
 
     $('#start-btn').addEventListener('click', function () {
@@ -31,7 +49,15 @@
       if (cfg.RANDOM_SET) {
         set = cfg.SETS[Math.floor(Math.random() * cfg.SETS.length)].id;
       } else {
-        set = $('#set-select').value;
+        const checkedRadio = $('input[name="exam_set"]:checked');
+        const selectElem = $('#set-select');
+        if (checkedRadio) {
+          set = checkedRadio.value;
+        } else if (selectElem) {
+          set = selectElem.value;
+        } else {
+          set = cfg.SETS[0].id;
+        }
       }
 
       sessionStorage.setItem('exam', JSON.stringify({ firstName: first, lastName: last, set: set, startedAt: Date.now() }));
