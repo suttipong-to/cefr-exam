@@ -11,6 +11,7 @@ window.EXAM_CONFIG = {
   // label = ชื่อที่แสดงบนการ์ด, desc = คำอธิบายใต้ชื่อ
   SETS: [
     { id: 'Set 1', label: 'ชุดที่ 1', desc: '50 ข้อ · ปรนัย 4 ตัวเลือก', file: 'data/questions_set1.csv' },
-    { id: 'Set 2', label: 'ชุดที่ 2', desc: '50 ข้อ · ปรนัย 4 ตัวเลือก', file: 'data/questions_set2.csv' }
+    { id: 'Set 2', label: 'ชุดที่ 2', desc: '50 ข้อ · ปรนัย 4 ตัวเลือก', file: 'data/questions_set2.csv' },
+    { id: 'Set 3', label: 'ชุดที่ 3', desc: '50 ข้อ · ปรนัย 4 ตัวเลือก', file: 'data/questions_set3.csv' }
   ]
 };
