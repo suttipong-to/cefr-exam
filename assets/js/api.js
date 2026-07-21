@@ -17,7 +17,19 @@ async function postJSON(url, payload) {
     const getUrl = url + (url.indexOf('?') !== -1 ? '&' : '?') + 'payload=' + encodeURIComponent(JSON.stringify(payload));
     const resGet = await fetch(getUrl, { method: 'GET' });
     if (!resGet.ok) throw new Error('HTTP ' + resGet.status);
-    return resGet.json();
+    const data = await resGet.json();
+
+    // หาก Apps Script ยังเป็นโค้ดเก่าที่ doGet() คืนค่า CEFR exam backend is running (ผู้ใช้ยังไม่ได้ Deploy New version)
+    // ให้พยายามส่งด้วย POST สำรองในกรณีที่เบราว์เซอร์อนุญาตการแปลง POST -> GET บน 302 redirect
+    if (data && data.message === 'CEFR exam backend is running' && payload && payload.action) {
+      const resPost = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+      if (resPost.ok) return resPost.json();
+    }
+    return data;
   }
 
   const res = await fetch(url, {
