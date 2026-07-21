@@ -18,7 +18,7 @@
  */
 
 const CONFIG = {
-  ADMIN_PASSPHRASE: 'CHANGE_ME_admin_2026', // <<< เปลี่ยนก่อนใช้จริง
+  ADMIN_PASSPHRASE: 'spoc#2026', // <<< เปลี่ยนก่อนใช้จริง
   PASS_PERCENT: 60,                          // เกณฑ์ผ่าน (%)
   RESULTS_SHEET: 'Results'
 };
