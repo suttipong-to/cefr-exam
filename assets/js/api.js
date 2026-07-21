@@ -9,8 +9,17 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
-/* POST เป็น text/plain เพื่อเลี่ยง CORS preflight (Apps Script ไม่รองรับ OPTIONS) */
+/* POST/GET ยูทิลิตี้ร่วม: รองรับ Apps Script Web App โดยเลี่ยงปัญหา 405/CORS เมื่อเกิด 302 redirect */
 async function postJSON(url, payload) {
+  // สำหรับ Apps Script Web App (script.google.com) การใช้ POST จะถูก 302 redirect ไปยัง script.googleusercontent.com
+  // ซึ่งรองรับเฉพาะ GET หาก browser ส่ง POST ตามไปจะเกิด HTTP 405 Method Not Allowed ดังนั้นให้ส่งผ่าน GET payload query param
+  if (url.indexOf('script.google.com') !== -1) {
+    const getUrl = url + (url.indexOf('?') !== -1 ? '&' : '?') + 'payload=' + encodeURIComponent(JSON.stringify(payload));
+    const resGet = await fetch(getUrl, { method: 'GET' });
+    if (!resGet.ok) throw new Error('HTTP ' + resGet.status);
+    return resGet.json();
+  }
+
   const res = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },

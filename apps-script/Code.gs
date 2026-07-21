@@ -31,21 +31,30 @@ const ANSWER_KEYS = {
 };
 
 function doPost(e) {
+  return handleRequest_(e);
+}
+
+function doGet(e) {
+  return handleRequest_(e);
+}
+
+function handleRequest_(e) {
   try {
-    const body = JSON.parse(e.postData.contents);
+    let body = {};
+    if (e && e.postData && e.postData.contents) {
+      body = JSON.parse(e.postData.contents);
+    } else if (e && e.parameter && (e.parameter.payload || e.parameter.action)) {
+      body = e.parameter.payload ? JSON.parse(e.parameter.payload) : e.parameter;
+    }
+    
     switch (body.action) {
       case 'submit':     return handleSubmit_(body);
       case 'getResults': return handleGetResults_(body);
-      default:           return json_({ status: 'error', message: 'unknown action' });
+      default:           return json_({ status: 'ok', message: 'CEFR exam backend is running' });
     }
   } catch (err) {
     return json_({ status: 'error', message: String(err) });
   }
-}
-
-// เผื่อเปิด URL ตรง ๆ เพื่อเช็คว่า deploy สำเร็จ
-function doGet() {
-  return json_({ status: 'ok', message: 'CEFR exam backend is running' });
 }
 
 function handleSubmit_(body) {

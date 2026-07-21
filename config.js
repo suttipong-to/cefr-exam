@@ -1,11 +1,11 @@
 /* ตั้งค่าหลักของระบบสอบ — แก้ค่าตรงนี้ที่เดียว */
 window.EXAM_CONFIG = {
   // วาง URL ของ Apps Script Web App ที่ deploy แล้วตรงนี้ (ลงท้ายด้วย /exec)
-  API_URL: 'https://script.google.com/macros/s/AKfycby1e9b7503QeGfT28Vd0w6V1yL0r278c6X960pA_n803q2lRzV/exec',
+  API_URL: 'https://script.google.com/macros/s/AKfycbzZPo9GhqNWHX0-6Olfc8fYy78zTG26ya_c2s20tkmoMNwAcsu1sWlaSf6u62KtRlGj/exec',
 
   PASS_PERCENT: 50,            // เกณฑ์ผ่าน (ใช้แสดงผลฝั่ง admin เท่านั้น)
   RANDOM_SET: false,           // false = ให้ผู้สอบกดเลือกชุดเอง, true = สุ่มชุดให้อัตโนมัติ
-  REQUIRE_ALL_ANSWERED: true,  // true = ต้องตอบครบทุกข้อก่อนส่ง
+  REQUIRE_ALL_ANSWERED: false,  // true = ต้องตอบครบทุกข้อก่อนส่ง
   TIME_LIMIT_MIN: 45,           // 0 = ไม่จับเวลา, เช่น 45 = ให้เวลา 45 นาที
 
   // label = ชื่อที่แสดงบนการ์ด, desc = คำอธิบายใต้ชื่อ

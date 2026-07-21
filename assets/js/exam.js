@@ -142,18 +142,42 @@
       const done = Object.keys(answers).length;
       const err = $('#exam-error');
 
-      if (!auto && cfg.REQUIRE_ALL_ANSWERED && done < total) {
-        const firstUnanswered = questions.find(function (q) { return !answers[q.No]; });
-        if (firstUnanswered) {
-          const card = $('#q-' + firstUnanswered.No);
+      if (!auto) {
+        if (done < total) {
+          const firstUnanswered = questions.find(function (q) { return !answers[q.No]; });
           $all('.q-card').forEach(function (c) {
             const n = c.id.slice(2);
             if (!answers[n]) c.classList.add('unanswered');
           });
-          showError(err, 'ยังตอบไม่ครบ เหลืออีก ' + (total - done) + ' ข้อ');
-          if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+          if (cfg.REQUIRE_ALL_ANSWERED) {
+            if (firstUnanswered) {
+              const card = $('#q-' + firstUnanswered.No);
+              showError(err, 'ยังตอบไม่ครบ เหลืออีก ' + (total - done) + ' ข้อ');
+              if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return;
+          } else {
+            // REQUIRE_ALL_ANSWERED = false: แจ้งเตือนข้อที่ยังไม่ได้ตอบ และถามยืนยันก่อนส่ง
+            const msg = '⚠️ แจ้งเตือน: คุณยังตอบข้อสอบไม่ครบ!\n\n' +
+                        '• ตอบแล้ว: ' + done + ' จาก ' + total + ' ข้อ\n' +
+                        '• ยังไม่ได้ตอบ: ' + (total - done) + ' ข้อ\n\n' +
+                        'คุณแน่ใจหรือไม่ว่าต้องการส่งคำตอบทันที (ข้อที่ข้ามไปจะไม่ได้คะแนน)?';
+            if (!window.confirm(msg)) {
+              showError(err, 'ยังตอบไม่ครบ เหลืออีก ' + (total - done) + ' ข้อ (ระบบไฮไลต์ข้อที่ข้ามด้วยกรอบสีแดงแล้ว)');
+              if (firstUnanswered) {
+                const card = $('#q-' + firstUnanswered.No);
+                if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+              return;
+            }
+          }
+        } else {
+          // ตอบครบทุกข้อแล้ว: ถามยืนยันเพื่อความมั่นใจก่อนส่ง
+          if (!window.confirm('✨ คุณตอบครบทั้ง ' + total + ' ข้อเรียบร้อยแล้ว\n\nยืนยันการส่งคำตอบหรือไม่?')) {
+            return;
+          }
         }
-        return;
       }
 
       const btn = $('#submit-btn');

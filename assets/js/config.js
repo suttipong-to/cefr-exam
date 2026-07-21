@@ -5,7 +5,7 @@ window.EXAM_CONFIG = {
 
   PASS_PERCENT: 50,            // เกณฑ์ผ่าน (ใช้แสดงผลฝั่ง admin เท่านั้น)
   RANDOM_SET: false,           // false = ให้ผู้สอบกดเลือกชุดเอง, true = สุ่มชุดให้อัตโนมัติ
-  REQUIRE_ALL_ANSWERED: true,  // true = ต้องตอบครบทุกข้อก่อนส่ง
+  REQUIRE_ALL_ANSWERED: false,  // true = ต้องตอบครบทุกข้อก่อนส่ง
   TIME_LIMIT_MIN: 45,           // 0 = ไม่จับเวลา, เช่น 45 = ให้เวลา 45 นาที
 
   // label = ชื่อที่แสดงบนการ์ด, desc = คำอธิบายใต้ชื่อ
