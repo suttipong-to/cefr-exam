@@ -100,7 +100,7 @@ function handleGetResults_(body) {
       answers: r[8], durationSec: r[9]
     };
   });
-  return json_({ status: 'ok', rows: rows, passPercent: CONFIG.PASS_PERCENT });
+  return json_({ status: 'ok', rows: rows, passPercent: CONFIG.PASS_PERCENT, answerKeys: ANSWER_KEYS });
 }
 
 function getResultsSheet_() {

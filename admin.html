@@ -40,6 +40,7 @@
         <input type="text" id="filter-text" class="grow" placeholder="ค้นหาชื่อ–นามสกุล">
         <select id="filter-set"></select>
         <span class="spacer"></span>
+        <button class="btn btn-ghost" id="view-keys-btn">📋 ดูเฉลยข้อสอบ</button>
         <button class="btn btn-ghost" id="export-btn">ดาวน์โหลด CSV</button>
       </div>
 
@@ -49,11 +50,50 @@
             <tr>
               <th>เวลา</th><th>ชื่อ–นามสกุล</th><th>ชุด</th>
               <th class="num">คะแนน</th><th class="num">%</th><th>ผล</th>
+              <th style="text-align:center">ตรวจคำตอบ</th>
             </tr>
           </thead>
           <tbody id="results-body"></tbody>
         </table>
         <div class="empty" id="empty" hidden>ยังไม่มีผลการสอบ</div>
+      </div>
+    </div>
+
+    <!-- Modal ดูตารางเฉลยข้อสอบ (Answer Keys) -->
+    <div id="keys-modal" class="modal-overlay" hidden>
+      <div class="modal-content">
+        <div class="modal-head">
+          <h3>📋 ตารางเฉลยข้อสอบ (Answer Keys)</h3>
+          <button class="btn btn-ghost btn-sm close-modal-btn" data-target="keys-modal">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="key-tabs" id="key-tabs">
+            <button class="key-tab active" data-set="Set 1">ชุดที่ 1</button>
+            <button class="key-tab" data-set="Set 2">ชุดที่ 2</button>
+            <button class="key-tab" data-set="Set 3">ชุดที่ 3</button>
+          </div>
+          <div id="keys-content"></div>
+        </div>
+        <div class="modal-foot">
+          <button class="btn close-modal-btn" data-target="keys-modal">ปิดหน้าต่าง</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal ดูผลตรวจคำตอบรายคน (Student Inspect) -->
+    <div id="inspect-modal" class="modal-overlay" hidden>
+      <div class="modal-content">
+        <div class="modal-head">
+          <h3 id="inspect-title">🔍 ตรวจคำตอบรายข้อ</h3>
+          <button class="btn btn-ghost btn-sm close-modal-btn" data-target="inspect-modal">✕</button>
+        </div>
+        <div class="modal-body">
+          <div id="inspect-summary" class="inspect-summary"></div>
+          <div id="inspect-content"></div>
+        </div>
+        <div class="modal-foot">
+          <button class="btn close-modal-btn" data-target="inspect-modal">ปิดหน้าต่าง</button>
+        </div>
       </div>
     </div>
 
