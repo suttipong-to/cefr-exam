@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=6">
 </head>
 <body>
   <div class="wrap">
@@ -36,11 +36,13 @@
     <p class="foot">ระบบสอบออนไลน์ · CEFR A1 → A2</p>
   </div>
 
-  <script src="config.js?v=5"></script>
+  <script src="config.js?v=6"></script>
   <script>
     (function () {
       const cfg = window.EXAM_CONFIG;
       const resText = sessionStorage.getItem('exam_result');
+      console.log('EXAM_CONFIG:', cfg);
+      console.log('exam_result from sessionStorage:', resText);
       if (resText && cfg && cfg.SHOW_SCORE_AFTER_SUBMIT) {
         try {
           const res = JSON.parse(resText);
@@ -56,6 +58,8 @@
 
             document.getElementById('score-box').hidden = false;
             document.getElementById('done-desc').textContent = 'ขอบคุณสำหรับการทำแบบทดสอบ ระบบได้บันทึกคำตอบและประเมินผลของคุณเรียบร้อยแล้ว';
+          } else {
+            console.warn('Backend did not return score details. Make sure Google Apps Script Web App is deployed as a New Version.');
           }
         } catch (e) {
           console.error(e);
