@@ -1,7 +1,7 @@
 /* ตั้งค่าหลักของระบบสอบ — แก้ค่าตรงนี้ที่เดียว */
 window.EXAM_CONFIG = {
   // วาง URL ของ Apps Script Web App ที่ deploy แล้วตรงนี้ (ลงท้ายด้วย /exec)
-  API_URL: 'https://script.google.com/macros/s/AKfycbwS0RspS3KMkMyIbYsCPqlj3UuC9d-vwL9iT_hqLjfPxhIGEDlxNIntCWk0t1mjbQHy/exec',
+  API_URL: 'https://script.google.com/macros/s/AKfycbyJpst87ShHs4-SW5dB2vrmJw3qZF6fkHoSHhHn1oOCjzZxKUX5lF0iPFoFaY1_x7V4/exec',
 
   PASS_PERCENT: 50,            // เกณฑ์ผ่าน (ใช้ตัดสินผ่าน/ไม่ผ่าน)
   SHOW_SCORE_AFTER_SUBMIT: true, // true = แสดงคะแนนให้ผู้สอบเห็นทันทีหลังส่ง, false = ไม่แสดงคะแนน
