@@ -13,11 +13,55 @@
   <div class="wrap">
     <div class="panel done-wrap">
       <div class="done-mark">&#10003;</div>
-      <h1>ส่งคำตอบเรียบร้อยแล้ว</h1>
-      <p>ขอบคุณสำหรับการทำแบบทดสอบ ระบบได้บันทึกคำตอบของคุณแล้ว ผลการสอบจะรายงานโดยผู้ดูแลระบบ</p>
+      <h1 id="done-title">ส่งคำตอบเรียบร้อยแล้ว</h1>
+      <p id="done-desc">ขอบคุณสำหรับการทำแบบทดสอบ ระบบได้บันทึกคำตอบของคุณแล้ว ผลการสอบจะรายงานโดยผู้ดูแลระบบ</p>
+
+      <div id="score-box" class="score-card" hidden style="margin: 24px auto 28px; max-width: 420px; background: #fafbfc; border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 20px 24px; text-align: left;">
+        <div style="font-size: 0.9rem; color: var(--ink-faint); margin-bottom: 12px; font-weight: 700; border-bottom: 1px solid var(--line); padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+          <span>📊 สรุปผลการทดสอบ</span>
+          <span id="score-status" class="badge">–</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+          <span style="color: var(--ink-soft); font-size: 0.98rem;">คะแนนที่ได้:</span>
+          <span style="font-size: 1.4rem; font-weight: 700; color: var(--ink);" id="score-val">–</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <span style="color: var(--ink-soft); font-size: 0.98rem;">คิดเป็นร้อยละ:</span>
+          <span style="font-size: 1.1rem; font-weight: 700; color: var(--ink-soft);" id="score-pct">–</span>
+        </div>
+      </div>
+
       <a class="btn btn-ghost" href="index.html">กลับหน้าแรก</a>
     </div>
     <p class="foot">ระบบสอบออนไลน์ · CEFR A1 → A2</p>
   </div>
+
+  <script src="config.js?v=5"></script>
+  <script>
+    (function () {
+      const cfg = window.EXAM_CONFIG;
+      const resText = sessionStorage.getItem('exam_result');
+      if (resText && cfg && cfg.SHOW_SCORE_AFTER_SUBMIT) {
+        try {
+          const res = JSON.parse(resText);
+          if (res && res.score !== undefined) {
+            document.getElementById('score-val').textContent = res.score + ' / ' + res.total + ' คะแนน';
+            document.getElementById('score-pct').textContent = res.percent + '%';
+
+            const badge = document.getElementById('score-status');
+            const passPercent = cfg.PASS_PERCENT || 60;
+            const isPass = res.percent >= passPercent || res.result === 'PASS';
+            badge.textContent = isPass ? 'ผ่านเกณฑ์ (PASS)' : 'ไม่ผ่านเกณฑ์ (FAIL)';
+            badge.className = 'badge ' + (isPass ? 'pass' : 'fail');
+
+            document.getElementById('score-box').hidden = false;
+            document.getElementById('done-desc').textContent = 'ขอบคุณสำหรับการทำแบบทดสอบ ระบบได้บันทึกคำตอบและประเมินผลของคุณเรียบร้อยแล้ว';
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    })();
+  </script>
 </body>
 </html>

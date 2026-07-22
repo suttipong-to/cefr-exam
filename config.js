@@ -3,7 +3,8 @@ window.EXAM_CONFIG = {
   // วาง URL ของ Apps Script Web App ที่ deploy แล้วตรงนี้ (ลงท้ายด้วย /exec)
   API_URL: 'https://script.google.com/macros/s/AKfycbwS0RspS3KMkMyIbYsCPqlj3UuC9d-vwL9iT_hqLjfPxhIGEDlxNIntCWk0t1mjbQHy/exec',
 
-  PASS_PERCENT: 50,            // เกณฑ์ผ่าน (ใช้แสดงผลฝั่ง admin เท่านั้น)
+  PASS_PERCENT: 50,            // เกณฑ์ผ่าน (ใช้ตัดสินผ่าน/ไม่ผ่าน)
+  SHOW_SCORE_AFTER_SUBMIT: true, // true = แสดงคะแนนให้ผู้สอบเห็นทันทีหลังส่ง, false = ไม่แสดงคะแนน
   RANDOM_SET: false,           // false = ให้ผู้สอบกดเลือกชุดเอง, true = สุ่มชุดให้อัตโนมัติ
   REQUIRE_ALL_ANSWERED: false,  // true = ต้องตอบครบทุกข้อก่อนส่ง
   TIME_LIMIT_MIN: 45,           // 0 = ไม่จับเวลา, เช่น 45 = ให้เวลา 45 นาที

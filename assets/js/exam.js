@@ -60,6 +60,7 @@
         }
       }
 
+      sessionStorage.removeItem('exam_result');
       sessionStorage.setItem('exam', JSON.stringify({ firstName: first, lastName: last, set: set, startedAt: Date.now() }));
       location.href = 'exam.html';
     });
@@ -197,6 +198,14 @@
         });
         if (resp.status === 'ok') {
           sessionStorage.removeItem('exam');
+          if (resp.score !== undefined) {
+            sessionStorage.setItem('exam_result', JSON.stringify({
+              score: resp.score,
+              total: resp.total,
+              percent: resp.percent,
+              result: resp.result
+            }));
+          }
           location.href = 'done.html';
         } else {
           throw new Error(resp.message || 'server error');

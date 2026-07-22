@@ -4,7 +4,7 @@
  * หน้าที่:
  *   1) รับคำตอบจากหน้าเว็บ (POST) แล้ว "ตรวจคะแนนฝั่ง server" ด้วยเฉลยด้านล่าง
  *   2) บันทึกผลลงชีต Results (export เป็น CSV ได้)
- *   3) ไม่คืนคะแนนให้ผู้สอบ (คืนแค่ status: ok)
+ *   3) คืนผลคะแนน (score, total, percent, result) ให้ฝั่ง client เพื่อแสดงผลตามตั้งค่าใน config.js
  *   4) หน้าแอดมิน: ตรวจ passphrase ฝั่ง server ก่อนคืนผล
  *
  * ติดตั้ง:
@@ -82,8 +82,14 @@ function handleSubmit_(body) {
     Number(body.durationSec || 0)
   ]);
 
-  // ผู้สอบไม่เห็นคะแนน — คืนแค่สถานะ
-  return json_({ status: 'ok' });
+  // คืนค่าคะแนนให้ฝั่ง client เพื่อให้ระบบเลือกแสดงผลตาม config (โดยไม่ส่งเฉลยกลับไป)
+  return json_({
+    status: 'ok',
+    score: score,
+    total: total,
+    percent: percent,
+    result: result
+  });
 }
 
 function handleGetResults_(body) {
